@@ -13,6 +13,7 @@ import com.nuvola.tpv.model.DefaultCostItem;
 import com.nuvola.tpv.model.Installation;
 import com.nuvola.tpv.model.InstallationPackage;
 import com.nuvola.tpv.model.InstallationStub;
+import com.nuvola.tpv.model.Project;
 import com.nuvola.tpv.model.User;
 import com.nuvola.tpv.model.UserGroup;
 import com.nuvola.tpv.repo.DefaultCostItemRepository;
@@ -35,8 +36,8 @@ import java.util.stream.Collectors;
 public class InstallationService {
 	@Autowired
 	private DefaultCostItemRepository itemRepository;
-//	@Autowired
-//	private InstallationRepository installationRepository;
+	@Autowired
+	private InstallationRepository installationRepository;
 	@Autowired
 	private InstallationPackageRepository installationPkgRepository;
 	public static final String ACCOMMODATION = "ACCOM";
@@ -92,6 +93,16 @@ public class InstallationService {
 		inst.setSellingPrice(inst.getFinalCost() * 1.7);
 		inst.setRequiredItems(stub.getRequiredItems());
 		return inst;
+	}
+	
+	public void setRevenueAndCost(Project project) {
+		Collection<Installation> installationList = installationRepository.findByProjectId(project.getId());
+		if (installationList == null)
+			return;
+		double totalRevenue = installationList.stream().collect(Collectors.summingDouble(n -> n.getSellingPrice()));
+		double totalCost = installationList.stream().collect(Collectors.summingDouble(n -> n.getFinalCost()));
+		project.setRevenue(totalRevenue);
+		project.setCost(totalCost);
 	}
 	
 	

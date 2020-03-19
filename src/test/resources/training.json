@@ -1,0 +1,59 @@
+{
+                "code": "trg001",
+                "projectId": "test001",
+                "trainingPackage": "TRG-001",
+                "type": "TRAINING",
+                "location": "CBI-Office",
+                "workingDays": 3,
+                "prepDays": 0,
+                "lrInstructor": 1500000,
+                "lrAssistant": 1000000,
+                "brInstructor": 1750000,
+                "brAssistant": 1250000,
+                "instructorCount": 1,
+                "assistantCount": 2,
+                "minParticipant": 4,
+                "participantCost": 7995000,
+                "participantCount": 5,
+                "title": "Tableau Fundamental - Training - CBI-Office",
+                "costItems": [
+                    {
+                        "itemName": "Per Diem",
+                        "quantity": 3,
+                        "uom": "day",
+                        "amount": 300000,
+                        "total": 900000
+                    },
+                    {
+                        "itemName": "Return Flight",
+                        "quantity": 3,
+                        "uom": "person",
+                        "amount": 1500000,
+                        "total": 4500000
+                    },
+                    {
+                        "itemName": "Hotel",
+                        "quantity": 4,
+                        "uom": "nights",
+                        "amount": 500000,
+                        "total": 2000000
+                    },
+                    {
+                        "itemName": "Training Special Venue",
+                        "quantity": 1,
+                        "uom": "package",
+                        "amount": 5000000,
+                        "total": 5000000
+                    }
+                ],
+                "requiredItems": [
+                    "VENUE",
+                    "ACCOM",
+                    "TRANSPORT",
+                    "BT"
+                ],
+                "courseMaterialFee": 1500000,
+                "serverCost": 2500000,
+                "refreshmentCost": 65000,
+                "localTransportCost": 0
+            }

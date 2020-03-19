@@ -14,6 +14,7 @@ public @Data class MandaysSummary {
 	private double loadedCst;
 	private int count;
 	private int mandays;
+	private float rscUtil;
 	
 	public Double getTotalBilling() {
 		return this.billingRt * mandays;
@@ -22,4 +23,6 @@ public @Data class MandaysSummary {
 	public Double getTotalCost() {
 		return this.loadedCst * mandays;
 	}
+	
+
 }

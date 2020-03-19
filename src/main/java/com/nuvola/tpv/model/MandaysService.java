@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
+import com.nuvola.tpv.model.Names.TpvStatus;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-public @Data @NoArgsConstructor class MandaysService implements Serializable {
+public @Data @NoArgsConstructor class MandaysService extends Auditable<String> implements Serializable {
 
 	private static final long serialVersionUID = -2508492853368666125L;
 	@Id
@@ -25,6 +26,9 @@ public @Data @NoArgsConstructor class MandaysService implements Serializable {
 	private boolean overrideMS;
 	private List<MandaysSummary> mandaysSummaries;
 	private double sellingPrice;
+	private List<String> comments;
+	private List<Review> reviewers;
+	private TpvStatus tpvStatus = TpvStatus.DRAFT;
 
 	public double getTotalCost() {
 		if (this.mandaysSummaries == null)

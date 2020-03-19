@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 //		http.authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/oauth/token").permitAll();
-		http .requestMatchers() .antMatchers(HttpMethod.OPTIONS, "/oauth/token");
+		//http .requestMatchers() .antMatchers(HttpMethod.OPTIONS, "/oauth/token");
 //		http .requestMatchers() .antMatchers(HttpMethod.OPTIONS, "/**") .and().cors() .and().csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().httpBasic()
 				.realmName(securityRealm).and().csrf().disable();

@@ -4,13 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.nuvola.tpv.model.CostItem;
 import com.nuvola.tpv.model.DefaultCostItem;
+import com.nuvola.tpv.model.Project;
 import com.nuvola.tpv.model.Training;
 import com.nuvola.tpv.model.TrainingPackage;
+import com.nuvola.tpv.model.TrainingSet;
 import com.nuvola.tpv.model.TrainingStub;
 import com.nuvola.tpv.repo.DefaultCostItemRepository;
 import com.nuvola.tpv.repo.TrainingPackageRepository;
+import com.nuvola.tpv.repo.TrainingRepository;
+import com.nuvola.tpv.repo.TrainingSetRepository;
+
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -19,6 +25,10 @@ public class TrainingService {
 	private DefaultCostItemRepository itemRepository;
 	@Autowired
 	private TrainingPackageRepository trainingPkgRepository;
+	@Autowired
+	private TrainingRepository trainingRepository;
+	@Autowired
+	private TrainingSetRepository trainingSetRepository;
 	public static final String ACCOMMODATION = "ACCOM";
 	public static final String BT = "BT";
 	public static final String WARRANTY_SVC = "WARRANTY_SVC";
@@ -76,6 +86,45 @@ public class TrainingService {
 //		inst.setSellingPrice(inst.getFinalCost() * 1.7);
 		inst.setRequiredItems(stub.getRequiredItems());
 		return inst;
+	}
+	
+	
+	
+	public Collection<Training> getTrainings(String projectId) {
+		return trainingRepository.findByProjectId(projectId);
+	}
+	
+	public TrainingSet getTrainingSet(String projectId) {
+
+		
+		TrainingSet trainingSet = trainingSetRepository.findFirstByProjectId(projectId);
+		if(trainingSet == null) {
+			trainingSet = new TrainingSet();
+			trainingSet.setProjectId(projectId);
+			Collection<Training> trainings = getTrainings(projectId);
+			Set<String> trainingIds = trainings.stream().map(n->n.getCode()).collect(Collectors.toSet());
+			trainingSet.setTrainingIds(trainingIds);
+			trainingSet = trainingSetRepository.save(trainingSet);
+		}	
+		
+		return trainingSet;
+	}
+	
+	public TrainingSet saveTrainingSet(TrainingSet trainingSet) {
+		return trainingSetRepository.save(trainingSet);
+	}
+	
+	public void setRevenueAndCost(Project project) {
+		Collection<Training> trainingList = trainingRepository.findByProjectId(project.getId());
+		if (trainingList == null) return;
+		setRevenueAndCost(project, trainingList);
+	}
+	
+	public void setRevenueAndCost(Project project,Collection<Training> trainingList) {
+		double totalRevenue = trainingList.stream().collect(Collectors.summingDouble(n -> n.getSellingPrice()));
+		double totalCost = trainingList.stream().collect(Collectors.summingDouble(n -> n.getFinalCost()));
+		project.setRevenue(totalRevenue);
+		project.setCost(totalCost);
 	}
 	
 	

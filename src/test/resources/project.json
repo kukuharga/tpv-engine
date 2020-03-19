@@ -1,0 +1,84 @@
+{
+	"createdBy": null,
+	"createdDate": null,
+	"lastModifiedBy": "raditya",
+	"lastModifiedDate": "2019-01-27T06:19:37.546+0000",
+	"id": "test001",
+	"name": "Training Tableau",
+	"code": "TB1-TABLEAU ADVANCE",
+	"clientName": "BAF",
+	"startDate": "2018-10-15T00:00:00.000+0000",
+	"weekDuration": 4,
+	"sales": "raditya",
+	"department": "TRG",
+	"projectGroup": "ENTERPRISE",
+	"service": "TRAINING",
+	"salesLead": "arman",
+	"presales1": "agus_ompong",
+	"presales2": "Nurul",
+	"pmoDelivery": "user-3",
+	"solArchitect": "SA1",
+	"description": "Tableau Advance Training",
+	"poCurrency": "IDR",
+	"projectType": "INVESTMENT",
+	"poNumber": "PO_123",
+	"leadStage": "CW",
+	"closeDate": "2018-10-11T00:00:00.000+0000",
+	"kickOffDate": "2018-10-12T00:00:00.000+0000",
+	"docStatus":"WAITING_TPV_SUBMISSION",
+	"reviews": [
+		{
+			"reviewer": "tita",
+			"userGroup": null,
+			"status": null,
+			"reviewerType": "LOB",
+			"responseDate": null,
+			"decisionType": "INDIVIDUAL"
+		},
+		{
+			"reviewer": "raditya",
+			"userGroup": null,
+			"status": null,
+			"reviewerType": "LOB",
+			"responseDate": null,
+			"decisionType": "INDIVIDUAL"
+		},
+		{
+			"reviewer": "agus_ompong",
+			"userGroup": null,
+			"status": null,
+			"reviewerType": "PROJECT",
+			"responseDate": null,
+			"decisionType": "INDIVIDUAL"
+		},
+		{
+			"reviewer": "cayaluna",
+			"userGroup": null,
+			"status": null,
+			"reviewerType": "LOB",
+			"responseDate": null,
+			"decisionType": "INDIVIDUAL"
+		},
+		{
+			"reviewer": "nia",
+			"userGroup": null,
+			"status": null,
+			"reviewerType": "PROJECT",
+			"responseDate": null,
+			"decisionType": "INDIVIDUAL"
+		},
+		{
+			"reviewer": "arman",
+			"userGroup": null,
+			"status": null,
+			"reviewerType": "PROJECT",
+			"responseDate": null,
+			"decisionType": "INDIVIDUAL"
+		}
+
+	],
+	"locked": false,
+	"finishDate": "2018-11-12T00:00:00.000+0000",
+	"projectDuration": 20
+	
+}

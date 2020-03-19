@@ -19,5 +19,9 @@ public class UserService {
 		return (user != null) ? user.getFullName() : "";
 	}
 	
+	public User findByUserName(String userName) {
+		return userRepository.findByUsername(userName);
+	}
+	
 
 }

@@ -1,0 +1,17 @@
+
+Dear %USER%,
+
+You have a new task from TPV Online :
+
+Task Name : %TASK_TITLE%
+Project Name : %PROJECT_NAME%
+Assigned By : %ASSIGNED_BY%
+Task Due : %DUE_DATE%
+Task Link : %TASK_URL%
+
+This is an auto-generated email. Please do not reply.
+
+
+--------------------------------------
+
+

@@ -38,11 +38,11 @@ public @Data class Training {
 		return this.workingDays + this.prepDays;
 	}
 
-	public double getInstructorMandaysCost() {
+	public double getConsultantCost() {
 		return (lrInstructor * instructorCount + lrAssistant * assistantCount);
 	}
 
-	public double getInstructorMandaysBill() {
+	public double getConsultantBill() {
 		return (brInstructor * instructorCount + brAssistant * assistantCount);
 	}
 
@@ -52,17 +52,17 @@ public @Data class Training {
 
 
 
-	public int getTotalInstructorCount() {
+	public int getTotalConsultantCount() {
 		return instructorCount + assistantCount;
 	}
 
-	public double getInstructorRunCost() {
-		return (getInstructorMandaysCost() + localTransportCost * getTotalInstructorCount())
+	public double getConsultantRunCost() {
+		return (getConsultantCost() + localTransportCost * getTotalConsultantCount())
 				* (this.getDurationDays() + this.prepDays);
 	}
 
-	public double getInstructorRunBill() {
-		return (getInstructorMandaysBill() + localTransportCost * getTotalInstructorCount())
+	public double getConsultantRunBill() {
+		return (getConsultantBill() + localTransportCost * getTotalConsultantCount())
 				* (this.getDurationDays() + this.prepDays);
 	}
 
@@ -71,12 +71,12 @@ public @Data class Training {
 	}
 
 	public double getCostPerParticipant() {
-		return (getInstructorRunCost() / this.participantCount) + (this.refreshmentCost * this.workingDays)
+		return (getConsultantRunCost() / this.participantCount) + (this.refreshmentCost * this.workingDays)
 				+ this.courseMaterialFee + this.serverCost + (getItemsCost() / this.participantCount);
 	}
 	
 	public double getBillPerParticipant() {
-		return (getInstructorRunBill() / this.participantCount) + (this.refreshmentCost * this.workingDays)
+		return (getConsultantRunBill() / this.participantCount) + (this.refreshmentCost * this.workingDays)
 				+ this.courseMaterialFee + this.serverCost + (getItemsCost() / this.participantCount);
 	}
 

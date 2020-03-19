@@ -36,6 +36,7 @@ import com.nuvola.tpv.model.Department;
 import com.nuvola.tpv.model.DepartmentRevenue;
 import com.nuvola.tpv.model.Invoice;
 import com.nuvola.tpv.model.InvoiceDistribution;
+import com.nuvola.tpv.model.Names.LobType;
 import com.nuvola.tpv.model.Payment;
 import com.nuvola.tpv.model.PaymentTerm;
 import com.nuvola.tpv.model.ProjectType;
@@ -93,7 +94,7 @@ public class PurchaseOrderService {
 		PurchaseOrder purchaseOrder = poRepository.findProjectDistById(poId);
 		if (purchaseOrder == null || purchaseOrder.getProjectDist() == null)
 			return null;
-		List<String> serviceTypes = purchaseOrder.getProjectDist().stream()
+		List<LobType> serviceTypes = purchaseOrder.getProjectDist().stream()
 				.filter(n -> deptCode.equalsIgnoreCase(n.getDepartment())).map(n -> n.getService())
 				.collect(Collectors.toList());
 		List<ProjectType> list = new ArrayList<ProjectType>();
@@ -101,8 +102,8 @@ public class PurchaseOrderService {
 
 		if (list.size() < serviceTypes.size()) {
 			list = new ArrayList<ProjectType>();
-			for (String svcTypeStr : serviceTypes) {
-				list.add(new ProjectType(svcTypeStr, svcTypeStr));
+			for (LobType svcTypeStr : serviceTypes) {
+				list.add(new ProjectType(svcTypeStr, svcTypeStr.toString()));
 			}
 		}
 
@@ -402,7 +403,7 @@ public class PurchaseOrderService {
 		row.createCell(9).setCellValue(order.getClient());
 		row.createCell(10).setCellValue(order.getPoDesc());//Name of Project
 		row.createCell(11).setCellValue(rev.getProjectNm());//Project Description
-		row.createCell(12).setCellValue(rev.getService());//Type
+		row.createCell(12).setCellValue(rev.getService().toString());//Type
 		row.createCell(13).setCellValue(order.getPoCurrency());//PO Currency
 		row.createCell(14).setCellValue(order.getPoValue());
 		row.getCell(14).setCellStyle(amountStyle);

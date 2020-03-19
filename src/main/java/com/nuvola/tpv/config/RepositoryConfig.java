@@ -2,8 +2,10 @@ package com.nuvola.tpv.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
@@ -15,6 +17,7 @@ import org.springframework.data.web.HateoasPageableHandlerMethodArgumentResolver
 
 import com.nuvola.tpv.model.Activity;
 import com.nuvola.tpv.model.ActivityGroup;
+import com.nuvola.tpv.model.Comment;
 import com.nuvola.tpv.model.Deliverable;
 import com.nuvola.tpv.model.Department;
 import com.nuvola.tpv.model.Installation;
@@ -32,8 +35,10 @@ import com.nuvola.tpv.model.Training;
 import com.nuvola.tpv.model.TrainingPackage;
 import com.nuvola.tpv.model.User;
 import com.nuvola.tpv.model.UserGroup;
+import com.nuvola.tpv.service.SpringSecurityAuditorAware;
 
 @Configuration
+@EnableMongoAuditing
 public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
@@ -56,6 +61,7 @@ public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
         config.exposeIdsFor(PurchaseOrder.class);
         config.exposeIdsFor(Invoice.class);
         config.exposeIdsFor(Payment.class);
+        config.exposeIdsFor(Comment.class);
 //        config.setDefaultPageSize(1000000);
 //        config.setMaxPageSize(1000000);
     }
@@ -72,6 +78,11 @@ public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
 
         return mongoTemplate;
 
+    }
+    
+    @Bean
+    public AuditorAware<String> myAuditorProvider() {
+        return new SpringSecurityAuditorAware();
     }
     
 //    @Configuration
